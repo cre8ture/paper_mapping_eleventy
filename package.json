@@ -1,0 +1,25 @@
+{
+  "name": "assignment-3-apis-cre8ture",
+  "version": "1.0.0",
+  "description": "What was the GraphQL mutation you used to create a discussion post?",
+  "main": "src/index.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "dotenv": "^16.4.1"
+  },
+  "dependencies": {
+    "@11ty/eleventy-fetch": "^4.0.0",
+    "axios": "^1.6.7",
+    "compromise": "^14.12.0",
+    "d3": "^7.9.0",
+    "xml2js": "^0.6.2"
+  }
+}

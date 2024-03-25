@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>National Parks Explorer</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+  {% comment %} <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/parkslist/">Parks List</a>
+    </nav>
+  </header> {% endcomment %}
+  {% include 'header' %}
+  <main>
+    {{ content }}
+  </main>
+
+
+  {% include "footer.liquid" %}
+</body>
+</html>

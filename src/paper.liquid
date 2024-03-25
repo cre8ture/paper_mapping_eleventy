@@ -1,0 +1,12 @@
+---
+pagination:
+  data: arxiv
+  size: 1
+  alias: paper
+permalink: "/papers/{{ paper.slug }}/"
+---
+
+<h1>{{ paper.title }}</h1>
+<p>Authors: {{ paper.authors }}</p>
+<p>{{ paper.summary }}</p>
+<a href="{{ paper.url }}">Read the paper</a>
