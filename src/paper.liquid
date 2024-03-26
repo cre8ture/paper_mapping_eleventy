@@ -6,7 +6,105 @@ pagination:
 permalink: "/papers/{{ paper.slug }}/"
 ---
 
-<h1>{{ paper.title }}</h1>
-<p>Authors: {{ paper.authors }}</p>
-<p>{{ paper.summary }}</p>
-<a href="{{ paper.url }}">Read the paper</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <title>{{ paper.title }}</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://unpkg.com/compromise"></script>
+  <style>
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+    .node text { font: 12px sans-serif; }
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{ paper.title }}</h1>
+    <p>Authors: {{ paper.authors }}</p>
+  </header>
+  <main>
+    <p id="summary">{{ paper.summary }}</p>
+    <div id="d3-container"></div>
+  </main>
+  <footer>
+    <p>Today is{{ 'now' | date: "%Y" }} </p>
+  </footer>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      // const summaryText = document.getElementById('summary').innerText;
+      const nlp = window.nlp; // Or just use 'nlp' directly since it's global
+      const summaryText = document.getElementById('summary').innerText;
+      const doc = nlp(summaryText);
+      // Construct the data
+      const nouns = doc.nouns().out('array');
+      const verbs = doc.verbs().out('array');
+      const adjectives = doc.adjectives().out('array');
+
+      const data = {
+        name: 'Summary',
+        children: [
+          { name: 'Nouns', children: nouns.map(noun => ({ name: noun })) },
+          { name: 'Verbs', children: verbs.map(verb => ({ name: verb })) },
+          { name: 'Adjectives', children: adjectives.map(adj => ({ name: adj })) },
+        ],
+      };
+
+      // Set the dimensions and margins of the diagram
+      const margin = {top: 20, right: 90, bottom: 30, left: 90},
+            width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+      // Append the svg object to the body of the page
+      const svg = d3.select("#d3-container").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // Creates the tree layout
+      const treemap = d3.tree().size([height, width]);
+
+      const root = d3.hierarchy(data, d => d.children);
+      treemap(root);
+
+      // Add links between nodes
+      svg.selectAll(".link")
+          .data(root.links())
+          .enter().append("path")
+          .attr("class", "link")
+          .attr("d", d3.linkHorizontal()
+              .x(d => d.y)
+              .y(d => d.x));
+
+      // Add nodes
+      const node = svg.selectAll(".node")
+          .data(root.descendants())
+          .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => "translate(" + d.y + "," + d.x + ")");
+
+      node.append("circle")
+          .attr("r", 10);
+
+      node.append("text")
+          .attr("dy", ".35em")
+          .attr("x", d => d.children ? -13 : 13)
+          .style("text-anchor", d => d.children ? "end" : "start")
+          .text(d => d.data.name);
+    });
+  </script>
+</body>
+</html>

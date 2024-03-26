@@ -111,3 +111,32 @@ footer p {
   text-decoration: none;
   border-radius: 5px;
 }
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Adjust based on your design needs */
+}
+
+.card {
+  display: block;
+  background-color: #007bff; /* Example primary color */
+  color: #ffffff; /* Text color for readability */
+  text-align: center;
+  padding: 2rem;
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  text-decoration: none; /* Removes underline from the link */
+  max-width: 600px; /* Maximum width of the card */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow */
+}
+
+.card h2, .card p {
+  margin: 0 0 1rem; /* Adds spacing between text elements */
+}
+
+.card:hover {
+  background-color: #0056b3; /* Darker shade on hover for interaction */
+  text-decoration: none; /* Ensures the link stays un-underlined */
+  cursor: pointer;
+}

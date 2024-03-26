@@ -1,40 +1,12 @@
 ---
-layout: default
+layout: base2
 title: Machine Learning Papers
 ---
 
 {% assign logged_arxiv = arxiv | log %}
 
----
-layout: default
-title: Machine Learning Papers
----
-
-<h1>Machine Learning Papers TURD</h1>
-moooo
-<p>MEAT{{arxiv}}</p>
-{% if arxiv.size > 0 %}
-  <ul>
-    {% for paper in arxiv %}
-      <li>
-        <h2><a href="/papers/{{ paper.slug }}">{{ paper.title }}</a></h2>
-        <p>Authors: 
-          {% if paper.authors %}
-            {% for author in paper.authors %}
-              {{ author.name }}{% if forloop.last == false %}, {% endif %}
-            {% endfor %}
-          {% endif %}
-        </p>
-        <p>{{ paper.summary }}</p>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No data found.</p>
-{% endif %}
 
 <h1>Machine Learning Papers</h1>
-
 
 
 <ul>

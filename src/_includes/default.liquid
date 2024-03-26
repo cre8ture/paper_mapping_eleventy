@@ -3,35 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <title>{{ title }}</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Open Sans', sans-serif;
       color: #333;
       max-width: 800px;
       margin: 40px auto;
       padding: 0 20px;
     }
     a {
-      color: #0066CC;
+      color: #1a73e8;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-    h1, h2, h3 {
-      line-height: 1.2;
+    h1 {
+      font-weight: 600;
+    }
+    h2 {
+      font-weight: 600;
+      margin-top: 20px;
+    }
+    p {
+      line-height: 1.6;
     }
     .paper {
       margin-bottom: 30px;
     }
-    .paper h2 {
-      margin-bottom: 0.5em;
-    }
-    .paper p {
-      margin-top: 0;
-    }
-    /* Additional styles can be added here */
   </style>
 </head>
 <body>
@@ -42,7 +43,7 @@
     {% block content %}{% endblock %}
   </main>
   <footer>
-    <p>© {{ 'now' | date: '%Y' }} - All rights reserved.</p>
+    <p>© {{ 'now' | date: "%Y" }} - All rights reserved.</p>
   </footer>
 </body>
 </html>
