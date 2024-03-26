@@ -81,6 +81,10 @@ async function fetchPapersByTopic(topic) {
   }
   return entries.map(entry => {
 
+    if (!Array.isArray(entry.author)) {
+      entry.author = [entry.author]; // Make it an array with one author
+    }
+
     console.log("entry", entry)
     // You can now return the structure you want, for example:
     return {

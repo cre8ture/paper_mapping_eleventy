@@ -13,7 +13,9 @@ title: Machine Learning Papers
 {% for paper in arxiv %}
   <li>
     <h2><a href="/papers/{{ paper.slug }}">{{ paper.title }}</a></h2>
-    <p>Authors: {{ paper.authors | join: ', ' }}</p>
+    {% for author in paper.authors %}
+    {{ author.name }}{% if forloop.last == false %}, {% endif %}
+  {% endfor %}
   </li>
 {% endfor %}
 </ul>

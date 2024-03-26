@@ -32,14 +32,18 @@ permalink: "/papers/{{ paper.slug }}/"
 <body>
   <header>
     <h1>{{ paper.title }}</h1>
-    <p>Authors: {{ paper.authors }}</p>
+    <p>Authors:
+      {% for author in paper.authors %}
+      {{ author.name }}{% if forloop.last == false %}, {% endif %}
+    {% endfor %}
+</p>
   </header>
   <main>
     <p id="summary">{{ paper.summary }}</p>
     <div id="d3-container"></div>
   </main>
   <footer>
-    <p>Today is{{ 'now' | date: "%Y" }} </p>
+    <p>Today is {{ 'now' | date: "%A, %B %d, %Y" }} </p>
   </footer>
 
   <script>
