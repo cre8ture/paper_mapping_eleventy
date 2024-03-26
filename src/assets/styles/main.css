@@ -116,23 +116,23 @@ footer p {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh; /* Adjust based on your design needs */
+  min-height: 80vh; 
 }
 
 .card {
   display: block;
-  background-color: #007bff; /* Example primary color */
+  background-color: #007bff; 
   color: #ffffff; /* Text color for readability */
   text-align: center;
   padding: 2rem;
-  border-radius: 8px; /* Optional: Adds rounded corners */
-  text-decoration: none; /* Removes underline from the link */
+  border-radius: 8px;
+  text-decoration: none; 
   max-width: 600px; /* Maximum width of the card */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Optional: Adds a subtle shadow */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
 }
 
 .card h2, .card p {
-  margin: 0 0 1rem; /* Adds spacing between text elements */
+  margin: 0 0 1rem; 
 }
 
 .card:hover {
