@@ -40,7 +40,7 @@ XML is similar to HTML in its syntax, but unlike HTML, XML allows you to define 
        href="http://export.arxiv.org/api/query?search_query=all:electron&amp;id_list=&amp;start=0&amp;max_results=1"
        rel="self" type="application/atom+xml"/>
       <title xmlns="http://www.w3.org/2005/Atom">ArXiv Query:
-    search_query=all:electron&amp;id_list=&amp;start=0&amp;max_results=1</title>
+    search_query=all:electron&amp;id_list=&amp;start=0&amp;max_results=1</title>...
 ```
 
 ### Step 3: Constructing the API Request
@@ -83,7 +83,7 @@ const result = await parser.parseStringPromise(responseText);
 
 ### Step 6: Transforming the Data
 
-After parsing, the response is transformed to match your application's data structure needs. I process each entry in the arXiv data, extracting and optionally transforming relevant fields:
+After parsing, the response I considered what data I needed and transformed the JSON response (after it had been converted from XML). I process each entry in the arXiv data, extracting and optionally transforming relevant fields:
 
 ```javascript
 const entries = result.feed.entry;
@@ -116,7 +116,7 @@ In the page portion of my Eleventy project, I use the exported function in my da
 
 ### Next using Pagination
 
-Using Eleventy's `fetch` functionality along with pagination allows for efficient and dynamic generation of static pages based on fetched data, such as academic papers from the arXiv API. This approach involves fetching the data, parsing it using the above process, and then creating individual static pages for each item in the dataset.
+Using Eleventy's `fetch` functionality along with pagination allows for the generation of static pages based on fetched data, such as academic papers from the arXiv API
 
 ### step 8: Preparing Data for Pagination
 Eleventy's pagination feature enables us to generate multiple pages from a single template. In my case, pagination creates a unique page for each paper fetched from the arXiv API. 
